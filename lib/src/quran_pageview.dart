@@ -176,34 +176,14 @@ class _PageContent extends StatelessWidget {
         if (v == start && v == 1) {
           verseSpans.add(WidgetSpan(child: HeaderWidget(suraNumber: surah)));
           if (pageNumber != 1 && pageNumber != 187) {
-            if(surah != 97){
-             verseSpans.add(
-              TextSpan(
-                text: " ﱁ  ﱂﱃﱄ\n",
-                style: TextStyle(
-                  fontFamily: "QCF_P001",
-                  package: 'qcf_quran',
-                  fontSize: getScreenType(context) == ScreenType.large
-                      ? 13.2 / sp
-                      : 24 / sp,
+            verseSpans.add(
+              WidgetSpan(
+                child: BismillahWidget(
+                  sp: sp,
                   color: Colors.black,
                 ),
               ),
             );
-            }else
-          {  verseSpans.add(
-                TextSpan(
-                text:  "齃𧻓𥳐龎\n" ,
-                  style: TextStyle(
-                    fontFamily: "QCF_BSML",
-                    package: 'qcf_quran',
-                    fontSize: getScreenType(context) == ScreenType.large
-                        ? 13.2 / sp
-                        : 18 / sp,
-                    color: Colors.black,
-                  ),
-                ),
-              ); }
           }
         }
         final spanRecognizer = LongPressGestureRecognizer();
