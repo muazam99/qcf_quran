@@ -98,8 +98,8 @@ class _PageviewQuranState extends State<PageviewQuran> {
           controller: _controller,
           reverse: false, // right-to-left paging order
           itemCount: totalPagesCount,
-          onPageChanged: (index) =>
-              widget.onPageChanged?.call(index + 1), // 1-based
+          onPageChanged:
+              (index) => widget.onPageChanged?.call(index + 1), // 1-based
           itemBuilder: (context, index) {
             final pageNumber = index + 1; // 1-based page
             return _PageContent(
@@ -176,29 +176,53 @@ class _PageContent extends StatelessWidget {
         if (v == start && v == 1) {
           verseSpans.add(WidgetSpan(child: HeaderWidget(suraNumber: surah)));
           if (pageNumber != 1 && pageNumber != 187) {
-            verseSpans.add(
-              WidgetSpan(
-                child: BismillahWidget(
-                  sp: sp,
-                  color: Colors.black,
+            if (surah != 97) {
+              verseSpans.add(
+                TextSpan(
+                  text: " ﱁ  ﱂﱃﱄ\n",
+                  style: TextStyle(
+                    fontFamily: "QCF_P001",
+                    package: 'qcf_quran',
+                    fontSize:
+                        getScreenType(context) == ScreenType.large
+                            ? 13.2 / sp
+                            : 24 / sp,
+                    color: Colors.black,
+                  ),
                 ),
-              ),
-            );
+              );
+            } else {
+              verseSpans.add(
+                TextSpan(
+                  text: "齃𧻓𥳐龎\n",
+                  style: TextStyle(
+                    fontFamily: "QCF_BSML",
+                    package: 'qcf_quran',
+                    fontSize:
+                        getScreenType(context) == ScreenType.large
+                            ? 13.2 / sp
+                            : 18 / sp,
+                    color: Colors.black,
+                  ),
+                ),
+              );
+            }
           }
         }
         final spanRecognizer = LongPressGestureRecognizer();
         spanRecognizer.onLongPress = () => onLongPress?.call(surah, v);
-        spanRecognizer.onLongPressStart = (LongPressStartDetails d) =>
-            onLongPressDown?.call(surah, v, d);
+        spanRecognizer.onLongPressStart =
+            (LongPressStartDetails d) => onLongPressDown?.call(surah, v, d);
         spanRecognizer.onLongPressUp = () => onLongPressUp?.call(surah, v);
-        spanRecognizer.onLongPressEnd = (LongPressEndDetails d) =>
-            onLongPressCancel?.call(surah, v);
+        spanRecognizer.onLongPressEnd =
+            (LongPressEndDetails d) => onLongPressCancel?.call(surah, v);
 
         verseSpans.add(
           TextSpan(
-            text:v==ranges[0]['start']        ?  "${getVerseQCF(surah, v, verseEndSymbol: false).substring(0, 1)}\u200A${getVerseQCF(surah, v, verseEndSymbol: false).substring(1, getVerseQCF(surah, v, verseEndSymbol: false).length )}"
-        : getVerseQCF(surah, v, verseEndSymbol: false
-          ),
+            text:
+                v == ranges[0]['start']
+                    ? "${getVerseQCF(surah, v, verseEndSymbol: false).substring(0, 1)}\u200A${getVerseQCF(surah, v, verseEndSymbol: false).substring(1, getVerseQCF(surah, v, verseEndSymbol: false).length)}"
+                    : getVerseQCF(surah, v, verseEndSymbol: false),
             recognizer: spanRecognizer,
             children: [
               TextSpan(
@@ -229,13 +253,14 @@ class _PageContent extends StatelessWidget {
           package: 'qcf_quran',
           fontSize: baseFontSize,
           color: textColor,
-          height: (pageNumber == 1 || pageNumber == 2)
-              ? 2.2
-              : MediaQuery.of(context).systemGestureInsets.left > 0 == false
-              ? 2.2
-              : MediaQuery.of(context).viewPadding.top > 0
-              ? 2.2
-              : 2.2,
+          height:
+              (pageNumber == 1 || pageNumber == 2)
+                  ? 2.2
+                  : MediaQuery.of(context).systemGestureInsets.left > 0 == false
+                  ? 2.2
+                  : MediaQuery.of(context).viewPadding.top > 0
+                  ? 2.2
+                  : 2.2,
         ),
       ),
     );

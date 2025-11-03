@@ -20,7 +20,7 @@ class BismillahWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(
-      "ﱁ  ﱂﱃﱄ\n",
+      "齃𧻓𥳐龎\n",
       style: TextStyle(
         fontFamily: "QCF_BSML",
         package: 'qcf_quran',
