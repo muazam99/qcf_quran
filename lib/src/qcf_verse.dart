@@ -19,7 +19,7 @@ class QcfVerse extends StatefulWidget {
   //h (adding 1.h to get the ratio of screen size for responsive font design)
   final double h;
 
-  final TextAlign textAlign = TextAlign.center;
+  final TextAlign textAlign;
 
   const QcfVerse({
     super.key,
@@ -34,6 +34,7 @@ class QcfVerse extends StatefulWidget {
     this.onLongPressDown,
     this.sp = 1,
     this.h = 1,
+    this.textAlign = TextAlign.right,
   });
 
   @override
