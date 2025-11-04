@@ -19,6 +19,8 @@ class QcfVerse extends StatefulWidget {
   //h (adding 1.h to get the ratio of screen size for responsive font design)
   final double h;
 
+  final TextAlign textAlign = TextAlign.center;
+
   const QcfVerse({
     super.key,
     required this.surahNumber,
@@ -45,7 +47,7 @@ class _QcfVerseState extends State<QcfVerse> {
     var pageFontSize = getFontSize(pageNumber, context);
     return RichText(
       textDirection: TextDirection.rtl,
-      textAlign: TextAlign.center,
+      textAlign: widget.textAlign,
       text: TextSpan(
         recognizer: LongPressGestureRecognizer()
           ..onLongPress = widget.onLongPress
