@@ -188,7 +188,7 @@ class _PageContent extends StatelessWidget {
                         getScreenType(context) == ScreenType.large
                             ? 13.2 / sp
                             : 24 / sp,
-                    color: Colors.black,
+                    color: textColor,
                   ),
                 ),
               );
@@ -203,7 +203,7 @@ class _PageContent extends StatelessWidget {
                         getScreenType(context) == ScreenType.large
                             ? 13.2 / sp
                             : 18 / sp,
-                    color: Colors.black,
+                    color: textColor,
                   ),
                 ),
               );
@@ -231,7 +231,7 @@ class _PageContent extends StatelessWidget {
                 style: TextStyle(
                   fontFamily: pageFont,
                   package: 'qcf_quran',
-                  color: Colors.brown,
+                  color: textColor,
                   height: 1.35 / h,
                 ),
               ),
