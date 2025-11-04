@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'package:qcf_quran/qcf_quran.dart';
+import 'package:qcf_quran/src/data/quran_text.dart';
 
 /// A horizontally swipeable Quran mushaf using internal QCF fonts.
 ///
@@ -221,8 +222,8 @@ class _PageContent extends StatelessWidget {
           TextSpan(
             text:
                 v == ranges[0]['start']
-                    ? "${getVerseQCF(surah, v, verseEndSymbol: false).substring(0, 1)}\u200A${getVerseQCF(surah, v, verseEndSymbol: false).substring(1, getVerseQCF(surah, v, verseEndSymbol: false).length)}"
-                    : getVerseQCF(surah, v, verseEndSymbol: false),
+                    ? "${getVerseQCF(surah, v, verseEndSymbol: false, text: quranText).substring(0, 1)}\u200A${getVerseQCF(surah, v, verseEndSymbol: false, text: quranText).substring(1, getVerseQCF(surah, v, verseEndSymbol: false, text: quranText).length)}"
+                    : getVerseQCF(surah, v, verseEndSymbol: false, text: quranText),
             recognizer: spanRecognizer,
             children: [
               TextSpan(

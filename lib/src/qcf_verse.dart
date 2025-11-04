@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter/gestures.dart';
 import 'package:qcf_quran/qcf_quran.dart';
+import 'package:qcf_quran/src/data/quran_verse_text.dart';
 
 class QcfVerse extends StatefulWidget {
   final int surahNumber;
@@ -59,6 +60,7 @@ class _QcfVerseState extends State<QcfVerse> {
           widget.surahNumber,
           widget.verseNumber,
           verseEndSymbol: false,
+          text: quranVerseText,
         ),
         locale: const Locale("ar"),
         children: [

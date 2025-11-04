@@ -194,10 +194,11 @@ String getVerseEndSymbol(int verseNumber, {bool arabicNumeral = true}) {
 String getVerseQCF(
   int surahNumber,
   int verseNumber, {
+  List<dynamic> text = const [],
   bool verseEndSymbol = true,
 }) {
   String verse = "";
-  for (var i in quranText) {
+  for (var i in text) {
     if (i['surah_number'] == surahNumber && i['verse_number'] == verseNumber) {
       verse = (verseEndSymbol
           ? i['qcfData'].toString()
