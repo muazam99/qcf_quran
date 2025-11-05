@@ -30,6 +30,12 @@ class PageviewQuran extends StatefulWidget {
   /// Verse text color.
   final Color textColor;
 
+  /// the verse to be highlighted  {"surahNumber": 1, "verseNumber": 1}
+  final Map? highlightedVerse;
+
+  /// Verse text background color for highlight.
+  final Color? highlightedColor;
+
   /// Background color for the whole page container.
   final Color pageBackgroundColor;
 
@@ -53,6 +59,8 @@ class PageviewQuran extends StatefulWidget {
     this.sp = 1,
     this.h = 1,
     this.textColor = const Color(0xFF000000),
+    this.highlightedVerse,
+    this.highlightedColor,
     this.pageBackgroundColor = const Color(0xFFFFFFFF),
     this.onLongPress,
     this.onLongPressUp,
@@ -107,6 +115,8 @@ class _PageviewQuranState extends State<PageviewQuran> {
               pageNumber: pageNumber,
               fontSize: widget.fontSize,
               textColor: widget.textColor,
+              highlightedVerse: widget.highlightedVerse,
+              hightlightedColor: widget.highlightedColor,
               onLongPress: widget.onLongPress,
               onLongPressUp: widget.onLongPressUp,
               onLongPressCancel: widget.onLongPressCancel,
@@ -125,6 +135,8 @@ class _PageContent extends StatelessWidget {
   final int pageNumber;
   final double? fontSize;
   final Color textColor;
+  final Map? highlightedVerse;
+  final Color? hightlightedColor;
   final void Function(int surahNumber, int verseNumber)? onLongPress;
   final void Function(int surahNumber, int verseNumber)? onLongPressUp;
   final void Function(int surahNumber, int verseNumber)? onLongPressCancel;
@@ -146,6 +158,8 @@ class _PageContent extends StatelessWidget {
     required this.pageNumber,
     required this.fontSize,
     required this.textColor,
+    required this.highlightedVerse,
+    required this.hightlightedColor,
     required this.onLongPress,
     required this.onLongPressUp,
     required this.onLongPressCancel,
@@ -223,7 +237,12 @@ class _PageContent extends StatelessWidget {
             text:
                 v == ranges[0]['start']
                     ? "${getVerseQCF(surah, v, verseEndSymbol: false, text: quranText).substring(0, 1)}\u200A${getVerseQCF(surah, v, verseEndSymbol: false, text: quranText).substring(1, getVerseQCF(surah, v, verseEndSymbol: false, text: quranText).length)}"
-                    : getVerseQCF(surah, v, verseEndSymbol: false, text: quranText),
+                    : getVerseQCF(
+                      surah,
+                      v,
+                      verseEndSymbol: false,
+                      text: quranText,
+                    ),
             recognizer: spanRecognizer,
             children: [
               TextSpan(
@@ -232,6 +251,12 @@ class _PageContent extends StatelessWidget {
                   fontFamily: pageFont,
                   package: 'qcf_quran',
                   color: textColor,
+                  backgroundColor:
+                      highlightedVerse != null &&
+                              highlightedVerse!['surahNumber'] == surah &&
+                              highlightedVerse!['verseNumber'] == v
+                          ? hightlightedColor
+                          : null,
                   height: 1.35 / h,
                 ),
               ),
