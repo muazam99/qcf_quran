@@ -278,7 +278,7 @@ class _PageContent extends StatelessWidget {
         style: TextStyle(
           fontFamily: pageFont,
           package: 'qcf_quran',
-          fontSize: baseFontSize,
+          fontSize: fontSize ?? baseFontSize,
           color: textColor,
           height:
               (pageNumber == 1 || pageNumber == 2)
