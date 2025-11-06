@@ -259,7 +259,6 @@ class _PageContent extends StatelessWidget {
                   fontFamily: pageFont,
                   package: 'qcf_quran',
                   color: textColor,
-                  height: 1.35 / h,
                 ),
               ),
             ],
