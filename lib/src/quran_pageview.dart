@@ -116,7 +116,7 @@ class _PageviewQuranState extends State<PageviewQuran> {
               fontSize: widget.fontSize,
               textColor: widget.textColor,
               highlightedVerse: widget.highlightedVerse,
-              hightlightedColor: widget.highlightedColor,
+              highlightedColor: widget.highlightedColor,
               onLongPress: widget.onLongPress,
               onLongPressUp: widget.onLongPressUp,
               onLongPressCancel: widget.onLongPressCancel,
@@ -136,7 +136,7 @@ class _PageContent extends StatelessWidget {
   final double? fontSize;
   final Color textColor;
   final Map? highlightedVerse;
-  final Color? hightlightedColor;
+  final Color? highlightedColor;
   final void Function(int surahNumber, int verseNumber)? onLongPress;
   final void Function(int surahNumber, int verseNumber)? onLongPressUp;
   final void Function(int surahNumber, int verseNumber)? onLongPressCancel;
@@ -159,7 +159,7 @@ class _PageContent extends StatelessWidget {
     required this.fontSize,
     required this.textColor,
     required this.highlightedVerse,
-    required this.hightlightedColor,
+    required this.highlightedColor,
     required this.onLongPress,
     required this.onLongPressUp,
     required this.onLongPressCancel,
@@ -244,6 +244,14 @@ class _PageContent extends StatelessWidget {
                       text: quranText,
                     ),
             recognizer: spanRecognizer,
+            style: TextStyle(
+              backgroundColor:
+                  highlightedVerse != null &&
+                          highlightedVerse!['surahNumber'] == surah &&
+                          highlightedVerse!['verseNumber'] == v
+                      ? highlightedColor
+                      : null,
+            ),
             children: [
               TextSpan(
                 text: getVerseNumberQCF(surah, v),
@@ -251,12 +259,6 @@ class _PageContent extends StatelessWidget {
                   fontFamily: pageFont,
                   package: 'qcf_quran',
                   color: textColor,
-                  backgroundColor:
-                      highlightedVerse != null &&
-                              highlightedVerse!['surahNumber'] == surah &&
-                              highlightedVerse!['verseNumber'] == v
-                          ? hightlightedColor
-                          : null,
                   height: 1.35 / h,
                 ),
               ),
